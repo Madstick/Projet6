@@ -1,4 +1,4 @@
-const Sauce = require('../models/Sauce') // On récupère le modèle' Sauce'
+const Sauce = require('../models/sauce') // On récupère le modèle' Sauce'
 const fs = require('fs') // On récupère le module 'file system' de Node
 
 exports.createSauce = (req, res, next) => {
