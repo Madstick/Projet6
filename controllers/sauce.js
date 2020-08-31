@@ -22,7 +22,8 @@ exports.modifySauce = (req, res, next) => {
 
   if (req.file) {
     // Si la modification contient une image
-    Sauce.findOne({ _id: req.params.id }).then((sauce) => {
+    Sauce.findOne({ _id: req.params.id })
+    .then((sauce) => {
       // On supprime l'ancienne image du serveur
       const filename = sauce.imageUrl.split('/images/')[1]
       fs.unlinkSync(`images/${filename}`)
@@ -77,11 +78,10 @@ exports.getAllSauce = (req, res, next) => {
 }
 
 exports.addLikeDislike = (req, res, next) => {
-  // Pour la route POST = Ajout/suppression d'un like / dislike à une sauce
   const like = req.body.like
   const user = req.body.userId
   const sauceId = req.params.id
-  if (like === 1) { // Si il s'agit d'un like
+  if (like === 1) { 
     Sauce.updateOne(
       { _id: sauceId },
       {
@@ -93,7 +93,7 @@ exports.addLikeDislike = (req, res, next) => {
       .catch((error) => res.status(400).json({ error }))
   }
   if (like === -1) {
-    Sauce.updateOne( // Si il s'agit d'un dislike
+    Sauce.updateOne( 
       { _id: sauceId },
       {
         $push: { usersDisliked: user },
@@ -105,10 +105,10 @@ exports.addLikeDislike = (req, res, next) => {
       })
       .catch((error) => res.status(400).json({ error }))
   }
-  if (like === 0) { // Si il s'agit d'annuler un like ou un dislike
+  if (like === 0) { 
     Sauce.findOne({ _id: sauceId })
       .then((sauce) => {
-        if (sauce.usersLiked.includes(user)) { // Si il s'agit d'annuler un like
+        if (sauce.usersLiked.includes(user)) { 
           Sauce.updateOne(
             { _id: sauceId },
             {
@@ -119,7 +119,7 @@ exports.addLikeDislike = (req, res, next) => {
             .then(() => res.status(200).json({ message: 'Like retiré !' }))
             .catch((error) => res.status(400).json({ error }))
         }
-        if (sauce.usersDisliked.includes(user)) { // Si il s'agit d'annuler un dislike
+        if (sauce.usersDisliked.includes(user)) { 
           Sauce.updateOne(
             { _id: sauceId },
             {

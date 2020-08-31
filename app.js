@@ -1,8 +1,8 @@
 
 const express = require('express')
 const bodyParser = require('body-parser') // Pour faciliter le traitement des données contenues dans le corp de la reqûete, le transformant en objet JSON
-const mongoose = require('mongoose') // L'interface pour communiquer avec la BDD
-const path = require ('path') // Pour le middleware express static pour acceder au chemin du système de fichier
+const mongoose = require('mongoose') // L'interface pour communiquer avec la base de données
+const path = require ('path') // Pour le middleware express static qui permet d'acceder au chemin du système de fichier
 
 const sauceRoutes = require('./routes/sauce')
 const userRoutes = require('./routes/user')

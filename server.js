@@ -15,7 +15,7 @@ const normalizePort = (val) => {
 }
 const port = normalizePort(process.env.PORT || '3000')
 
-app.set('port', port) // On spécifie le port sur lequel tourne l'application port 3000 par défaut 
+app.set('port', port) // On spécifie le port sur lequel tourne l'application (port 3000 par défaut) 
 
 const errorHandler = (error) => { // Recherche les différentes erreurs et les gère de manière appropriée
   if (error.syscall !== 'listen') {
