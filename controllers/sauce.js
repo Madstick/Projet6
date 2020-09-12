@@ -8,8 +8,8 @@ exports.createSauce = (req, res, next) => {
     ...sauceObject,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${
       req.file.filename
-    }`,
-  })
+    }`
+  });
   sauce
     .save()
     .then(() => res.status(201).json({ message: 'Sauce enregistrée !' }))
