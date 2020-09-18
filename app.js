@@ -6,9 +6,10 @@ const path = require ('path') // Pour le middleware express static qui permet d'
 
 const sauceRoutes = require('./routes/sauce')
 const userRoutes = require('./routes/user')
+const homeRoutes = require('./routes/home')
 
 mongoose
-  .connect('mongodb+srv://Madstick:projet6oc@cluster0.bvlkd.mongodb.net/Madstick?retryWrites=true&w=majority' ,
+  .connect('mongodb+srv://User:billyboy420@cluster0.bvlkd.mongodb.net/Madstick?retryWrites=true&w=majority' ,
     { useNewUrlParser: true,
        useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -29,5 +30,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 
 app.use('/api/sauces', sauceRoutes)
 app.use('/api/auth', userRoutes)
+app.use('/', homeRoutes)
 
 module.exports = app
